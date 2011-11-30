@@ -445,14 +445,14 @@ static void print(const struct ebt_u_entry *entry,
 		if (ipinfo->invflags & EBT_IP6_SOURCE)
 			printf("! ");
 		printf("%s", ebt_ip6_to_numeric(&ipinfo->saddr));
-		printf("/%s ", ebt_ip6_to_numeric(&ipinfo->smsk));
+		printf("/%s ", ebt_ip6mask_to_numeric(&ipinfo->smsk));
 	}
 	if (ipinfo->bitmask & EBT_IP6_DEST) {
 		printf("--ip6-dst ");
 		if (ipinfo->invflags & EBT_IP6_DEST)
 			printf("! ");
 		printf("%s", ebt_ip6_to_numeric(&ipinfo->daddr));
-		printf("/%s ", ebt_ip6_to_numeric(&ipinfo->dmsk));
+		printf("/%s ", ebt_ip6mask_to_numeric(&ipinfo->dmsk));
 	}
 	if (ipinfo->bitmask & EBT_IP6_TCLASS) {
 		printf("--ip6-tclass ");

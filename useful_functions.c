@@ -411,3 +411,21 @@ char *ebt_ip6_to_numeric(const struct in6_addr *addrp)
 	static char buf[50+1];
 	return (char *)inet_ntop(AF_INET6, addrp, buf, sizeof(buf));
 }
+/* Transform the ip6 mask into a string ready for output. */
+#define BIT6(a, l) ((ntohl(a->s6_addr32[(l) / 32]) >> (31 - ((l) & 31))) & 1)
+
+char *ebt_ip6mask_to_numeric(const struct in6_addr *addrp)
+{
+        int l, i;
+        static char buf[50+1];
+        for (l = 0; l < 128; l++) {
+                if (BIT6(addrp, l) == 0)
+                        break;
+        }
+        for (i = l + 1; i < 128; i++) {
+                if (BIT6(addrp, i) == 1)
+                        return ebt_ip6_to_numeric(addrp);
+        }
+        sprintf(buf, "%d", l);
+        return buf;
+}

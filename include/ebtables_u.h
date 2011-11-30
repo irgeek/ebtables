@@ -303,6 +303,7 @@ char *ebt_mask_to_dotted(uint32_t mask);
 void ebt_parse_ip6_address(char *address, struct in6_addr *addr, 
 						   struct in6_addr *msk);
 char *ebt_ip6_to_numeric(const struct in6_addr *addrp);
+char *ebt_ip6mask_to_numeric(const struct in6_addr *addrp);
 
 
 int do_command(int argc, char *argv[], int exec_style,
