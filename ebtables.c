@@ -324,7 +324,7 @@ static void list_em(struct ebt_u_entries *entries)
 			uint64_t bcnt = hlp->cnt.bcnt;
 
 			if (replace->flags & LIST_X)
-				printf("-c %"PRIu64" %"PRIu64, pcnt, bcnt);
+				printf(" -c %"PRIu64" %"PRIu64, pcnt, bcnt);
 			else
 				printf(", pcnt = %"PRIu64" -- bcnt = %"PRIu64, pcnt, bcnt);
 		}

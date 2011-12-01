@@ -52,13 +52,13 @@ static void print(const struct ebt_u_entry *entry,
 		return;
 	}
 	if (verdict == EBT_CONTINUE)
-		printf("CONTINUE ");
+		printf("CONTINUE");
 	else if (verdict == EBT_ACCEPT)
-		printf("ACCEPT ");
+		printf("ACCEPT");
 	else if (verdict == EBT_DROP)
-		printf("DROP ");
+		printf("DROP");
 	else if (verdict == EBT_RETURN)
-		printf("RETURN ");
+		printf("RETURN");
 	else
 		ebt_print_bug("Bad standard target");
 }
