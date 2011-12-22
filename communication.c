@@ -295,7 +295,7 @@ void ebt_deliver_counters(struct ebt_u_replace *u_repl)
 	struct ebt_cntchanges *cc = u_repl->cc->next, *cc2;
 	struct ebt_u_entries *entries = NULL;
 	struct ebt_u_entry *next = NULL;
-	int i, chainnr = 0;
+	int i, chainnr = -1;
 
 	if (u_repl->nentries == 0)
 		return;
@@ -308,14 +308,14 @@ void ebt_deliver_counters(struct ebt_u_replace *u_repl)
 	old = u_repl->counters;
 	new = newcounters;
 	while (cc != u_repl->cc) {
-		while (!next || (next == entries->entries && chainnr < u_repl->num_chains)) {
-			next = NULL;
-			if ((entries = u_repl->chains[chainnr++])) {
-				next = entries->entries->next;
-			}
+		if (!next || next == entries->entries) {
+			chainnr++;
+			while (chainnr < u_repl->num_chains && (!(entries = u_repl->chains[chainnr]) ||
+			       (next = entries->entries->next) == entries->entries))
+				chainnr++;
+			if (chainnr == u_repl->num_chains)
+				break;
 		}
-		if (chainnr >= u_repl->num_chains && (!entries || next == entries->entries))
-			break;
 		if (next == NULL)
 			ebt_print_bug("next == NULL");
 		if (cc->type == CNT_NORM) {

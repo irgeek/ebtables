@@ -1,10 +1,10 @@
 # ebtables Makefile
 
 PROGNAME:=ebtables
-PROGRELEASE:=2
+PROGRELEASE:=4
 PROGVERSION_:=2.0.10
 PROGVERSION:=$(PROGVERSION_)-$(PROGRELEASE)
-PROGDATE:=July\ 2011
+PROGDATE:=December\ 2011
 LOCKFILE?=/var/lib/ebtables/lock
 LOCKDIR:=$(shell echo $(LOCKFILE) | sed 's/\(.*\)\/.*/\1/')/
 

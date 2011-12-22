@@ -1,3 +1,9 @@
+20111215
+	Changelog for v2.0.10-4
+	* really fix counter setting bug (thanks to James' persistence)
+20111204
+	Changelog for v2.0.10-3
+	* fix counter setting bug (reported by James Sinclair)
 20110710
 	Changelog for v2.0.10-2
 	* enable compiler optimizations (-O3)
